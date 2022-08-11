@@ -1,6 +1,10 @@
 package com.company.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,4 +38,22 @@ public class UserService {
         }
         repo.deleteById(id);
     }
+
+    public List<User> listAllByKey(String keyword){
+        if(keyword != null){
+            return repo.findAll(keyword);
+        }
+        return (List<User>) repo.findAll();
+    }
+
+    /*public Page<User> listAllByKeyword(int pageNum, String sortField, String sortDir, String keyword){
+        Sort sort = Sort.by(sortField);
+        sort = sortDir.equals("asc") ? sort.ascending() : sort.descending();
+
+        Pageable pageable = PageRequest.of(pageNum - 1, 6, sort);
+        if(keyword != null){
+            return repo.findAll(keyword, pageable);
+        }
+        return repo.findAll("", pageable);
+    }*/
 }

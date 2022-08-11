@@ -7,8 +7,54 @@
 </head>
 <body>
 <div class="container-fluid text-center">
-    <h1>Welcome to my application!!!</h1>
-    <a class="h2" th:href="@{/users}">Manage Users</a>
+    <div>
+        <h1>Welcome to my application!!!</h1>
+        <a class="h2" th:href="@{/users}">Manage Users</a>
+    </div>
+
+    <div>&nbsp</div>
+
+    <div>
+        <form th:action="@{/}">
+            <label>Filter:</label>
+            <input type="text"  name="keyword" th:value="${keyword}" required/>
+            &nbsp;
+            <input type="submit" value="Search" />
+            &nbsp;
+            <input type="button" value="Clear" onclick="clearFilter()" />
+        </form>
+    </div>
+
+    <div>&nbsp</div>
+
+
+    <div>
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>E-Mail</th>
+                </tr>
+            </thead>
+            <tbody>
+                <th:block th:each="user : ${listUsers}">
+                    <tr>
+                        <td>[[${user.id}]]</td>
+                        <td>[[${user.firstName}]]</td>
+                        <td>[[${user.lastName}]]</td>
+                        <td>[[${user.email}]]</td>
+                    </tr>
+                </th:block>
+            </tbody>
+        </table>
+    </div>
 </div>
+ <script type="text/javascript">
+     function clearFilter(){
+         window.location='/';
+     }
+ </script>
 </body>
 </html>
