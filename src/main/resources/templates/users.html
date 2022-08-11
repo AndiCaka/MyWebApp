@@ -7,11 +7,13 @@
 </head>
 <body>
 <div class="container-fluid text-center">
-    <div>
-        <h2>Manage Users</h2>
-    </div>
+
     <div class="m-2">
+        <h1>Manage Users</h1>
+        <div>&nbsp</div>
         <a class="h3" th:href="@{/users/new}">Add New User</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a class="h3" th:href="@{/}">Search Users</a>
     </div>
 
     <div th:if="${message}" class="alert alert-success text-center">
